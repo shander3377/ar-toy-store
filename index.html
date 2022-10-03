@@ -11,7 +11,7 @@
 		<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 		<script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
-
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<!-- Bootstrap -->
 		<link
 			rel="stylesheet"
@@ -25,6 +25,8 @@
 
 		<!--JS Files-->
 		<script src="./js/addButtons.js"></script>
+		<script src="./js/markerHandler.js"></script>
+
 	</head>
 
 	<body style="margin: 0px; overflow: hidden">
@@ -47,6 +49,7 @@
 				type="pattern"
 				url="assets/T01/pattern-crane.patt"
 				cursor="rayOrigin: mouse"
+				markerhandler
 			>
 				<a-entity
 					id="crane-3d-model"
