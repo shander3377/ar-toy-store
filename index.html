@@ -6,7 +6,23 @@
 			name="viewport"
 			content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
 		/>
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			rel="stylesheet"
+			id="bootstrap-css"
+		/>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!------ Include the above in your HEAD tag ---------->
 
+		<link
+			href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+			rel="stylesheet"
+			id="bootstrap-css"
+		/>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+		<!------ Include the above in your HEAD tag ---------->
 		<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 		<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
@@ -25,20 +41,20 @@
 			// Import the functions you need from the SDKs you need
 			// TODO: Add SDKs for Firebase products that you want to use
 			// https://firebase.google.com/docs/web/setup#available-libraries
-		  
+
 			// Your web app's Firebase configuration
 			const firebaseConfig = {
-			  apiKey: "AIzaSyAC4KAg5i0chUY2xDpx0kLcu2LNu60ofqQ",
-			  authDomain: "ar-toy-store-3e805.firebaseapp.com",
-			  projectId: "ar-toy-store-3e805",
-			  storageBucket: "ar-toy-store-3e805.appspot.com",
-			  messagingSenderId: "111903707492",
-			  appId: "1:111903707492:web:be37dab891bd0e9de66a71"
+				apiKey: "AIzaSyAC4KAg5i0chUY2xDpx0kLcu2LNu60ofqQ",
+				authDomain: "ar-toy-store-3e805.firebaseapp.com",
+				projectId: "ar-toy-store-3e805",
+				storageBucket: "ar-toy-store-3e805.appspot.com",
+				messagingSenderId: "111903707492",
+				appId: "1:111903707492:web:be37dab891bd0e9de66a71",
 			};
-		  
+
 			// Initialize Firebase
 			firebase.initializeApp(firebaseConfig);
-		  </script>
+		</script>
 		<!-- Local StyleSheet -->
 		<link href="./style.css" rel="stylesheet" />
 
@@ -46,10 +62,18 @@
 		<script src="./js/addMarker.js"></script>
 		<script src="./js/addButtons.js"></script>
 		<script src="./js/markerHandler.js"></script>
-
+		<script src="./js/stars.js"></script>
 	</head>
 
 	<body style="margin: 0px; overflow: hidden">
+		<script>
+			function closeModal() {}
+		</script>
+		<script>
+			function closeModal() {
+				document.getElementById("rating-modal-div").style.display = "none";
+			}
+		</script>
 		<a-scene
 			embedded
 			arjs="sourceType: webcam; sourceWidth: 1280; sourceHeight: 960; displayWidth: 1280; displayHeight: 960"
@@ -125,5 +149,96 @@
 		</a-scene>
 
 		<div id="button-div"></div>
+
+		<div class="container">
+			<div id="modal-div" class="modal" tableindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Order Summary</h5>
+							<button
+								type="button"
+								class="close"
+								data-dismiss="modal"
+								aria-label="CLose"
+								id="summary-close-button"
+							>
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="table-responsive">
+								<table class="table table-condensed">
+									<thead>
+										<tr>
+											<td><strong>Item</strong></td>
+											<td class="text-center"><strong>Price</strong></td>
+											<td class="text-center"><strong>Quantity</strong></td>
+											<td class="text-right"><strong>Total</strong></td>
+										</tr>
+									</thead>
+									<tbody id="bill-table-body"></tbody>
+								</table>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="pay-button" type="button" class="btn btn-primary">
+								Pay Now
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--ratings modal-->
+		<div class="container">
+			<div
+				id="rating-modal-div"
+				class="rating-modal"
+				tabindex="-1"
+				role="dialog"
+			>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Rate Dish</h5>
+							<button
+								type="button"
+								class="close"
+								data-dismiss="modal"
+								aria-label="Close"
+								id="rating-close-button"
+							>
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="table-responsive">
+								<input
+									id="rating-input"
+									name="rating-input"
+									class="rating rating-loading"
+									data-min="0"
+									data-max="5"
+									data-step="0.1"
+									value="0"
+								/>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<!--Submit Button-->
+							<button
+								id="save-rating-button"
+								type="button"
+								class="btn btn-primary"
+							>
+								Submit
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
